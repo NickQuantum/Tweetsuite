@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+
+
+{% block body %}
+	<head>
+		<style>
+			th {
+			background-color: black;
+			color: white;
+		} 
+		
+			/* centered columns styles */
+			.row-centered {
+				text-align:center;
+			}
+			.col-centered {
+				display:inline-block;
+				float:none;
+				/* reset the text-align */
+				text-align:left;
+				/* inline-block space fix */
+				margin-right:-4px;
+			}	
+
+
+
+		</style>
+	</head>
+
+	<div class="container" style="margin-top:50px;">
+		<div class="row row-centered">
+			<div class="col-xs-12 col-sm-6 col-md-2 col-centered">
+				<div class="box">
+					<div class="icon">
+							<div class="image"><a href="#tweets" onclick="show_tweets();" title="List of tweets"> <span class="glyphicon glyphicon-list-alt btn-lg white"></span></a></div>
+							<div class="info">
+								<h4 class="title">Tweets</h4>
+								<div class="more">
+								</div>
+							</div>
+					</div>
+					<div class="space"></div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-2 col-centered">
+				<div class="box">
+					<div class="icon">
+						<div class="image"><a href="#network_graph" onclick="show_network_graph();" title="Network"> <span class="glyphicon glyphicon-user btn-lg white"></span></a></div>
+							<div class="info">
+								<h4 class="title">Network</h4>
+								<div class="more">
+								</div>
+							</div>
+					</div>
+					<div class="space"></div>
+				</div>
+        	</div>
+			<div class="col-xs-12 col-sm-6 col-md-2 col-centered">
+				<div class="box">
+					<div class="icon">
+						<div class="image"><a href="#" onclick="showInfluencersAndTweets();" title="Top Tweets of Influencers"> <span class="glyphicon glyphicon-retweet btn-lg white"></span></a></div>
+							<div class="info">
+								<h4 class="title">Top Influencers</h4>
+								<div class="more">
+								</div>
+							</div>
+					</div>
+					<div class="space"></div>
+				</div>
+			</div>
+        
+			<div class="col-xs-12 col-sm-6 col-md-2 col-centered">
+				<div class="box">
+					<div class="icon">
+						<div class="image"><a href="#" onclick="showsentimentgraph();" title="Sentiment Analysis"><span class="glyphicon glyphicon-heart btn-lg white"></span></a></div>
+							<div class="info">
+								<h4 class="title">Sentiment</h4>
+								<div class="more">
+								</div>
+							</div>
+					</div>
+					<div class="space"></div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-2 col-centered">
+				<div class="box">
+					<div class="icon">
+						<div class="image"><a href="#statistics" onclick="show_statistics();" title="Top Statistics"> <span class="glyphicon glyphicon-stats btn-lg white"></span></a></div>
+							<div class="info">
+								<h4 class="title">Statistics</h4>
+								<div class="more">
+								</div>
+							</div>
+					</div>
+					<div class="space"></div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+	</div>
+	
+	<div id='statistics' class="col col-lg-12 text-center hidden " style="margin-top:0px ;">
+
+		{% include 'show_statistics.html' %}
+		
+	</div>
+	
+	<div id='network_graph' class="col col-lg-12 text-center hidden " style="margin-top:0px ;">
+
+		{% include 'show_network_graph.html' %}
+		
+	</div>
+	
+	<div id='tweets' class="col col-lg-12 text-center hidden " style="margin-top:0px ;">
+
+		{% include 'show_tweets.html' %}
+		
+	</div>
+	
+	<script>
+	
+		var filename="emptyfilename";
+		
+		function show_statistics(){
+			
+			$("#tweets").addClass('hidden');
+			$("#statistics").removeClass('hidden');
+			d3.select("#snagraph").remove();
+		}
+		
+		function show_tweets(){
+			
+			$("#statistics").addClass('hidden');
+			d3.select("#snagraph").remove();
+			$("#tweets").removeClass('hidden');
+			filename = "{{url_for('static', filename='tweets/sample_tweets.txt')}}";
+			draw_tweet_table(filename);
+			
+		}
+		
+		function show_network_graph(){
+			
+			$("#statistics").addClass('hidden');
+			$("#tweets").addClass('hidden');
+			$("#network_graph").removeClass('hidden');
+			filename = "{{url_for('static', filename='tweets/sample_graph.json')}}";
+			draw_network_graph(filename);
+			
+		}
+	</script>
+{% endblock %}
+
+
+{% block nav %}
+	{% include "navigation.html" %}
+{% endblock %}
+

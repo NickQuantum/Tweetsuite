@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block body %}
+<!-- Icon Panels - START -->
+<div class="container" style="margin-top:50px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-3 ">
+            <div class="box">
+                <div class="icon"> <!--onclick='$("#featurelist").hide();'-->
+                    <div class="image"><a href="#"  title="List of tweets"> <span class="glyphicon glyphicon-list-alt btn-lg white"></span></a></div>
+                    <div class="info">
+                        <h4 class="title">Tweets</h4>
+						<p>Enter keywords that you expect to find in tweets and see the latest tweets containing the keywords along with hashtags.
+						</p>
+                        <div class="more">
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-3 ">
+            <div class="box">
+                <div class="icon"> <!-- onclick='$("#featurelist").show();' -->
+                    <div class="image"><a href="#"  title="Key Influencers"> <span class="glyphicon glyphicon-user btn-lg white"></span></a></div>
+                    <div class="info">
+                        <h4 class="title">Influencers</h4>
+						<p>
+						Visualize the users who are being mentioned and who are being retweeted the most for the search topic in real time     .       
+						</p>
+                        <div class="more">
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-3 ">
+            <div class="box">
+                <div class="icon"> <!-- onclick="showsentimentgraph();" -->
+                    <div class="image"><a href="#"  title="Sentiment Analysis"><span class="glyphicon glyphicon-heart btn-lg white"></span></a></div>
+                    <div class="info">
+                        <h4 class="title">Sentiment</h4>
+						<p>
+						Classify and visualize the Tweet Word Cloud for the search topic based on their sentiment in real time.
+						</p>
+                        <div class="more">
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+         <div class="col-xs-12 col-sm-6 col-lg-3 ">
+            <div class="box">
+                <div class="icon">
+                    <div class="image"><a href="#" onclick="showInfluencersAndTweets();" title="Top Tweets of Influencers"> <span class="glyphicon glyphicon-retweet btn-lg white"></span></a></div>
+                    <div class="info">
+                        <h4 class="title">Influencer Tweets</h4>
+                                  <p>
+						View the Tweets of Top 3 Influencers of the searched keyword and their top Referred Links .
+						</p>
+                        <div class="more">
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+    
+       
+    </div>
+</div>
+
+
+
+
+<!-- Icon Panels - END -->
+
+<!-- FEATURE LIST - START -->
+
+<div class="container" id="featurelist">
+    <div class="row feature">
+        <div class="col-md-4">
+            <div>
+                <img src="http://lorempixel.com/200/200/city/1/" alt="Texto Alternativo" class="img-circle img-thumbnail">
+                <h2>Tweets</h2>
+                <p>
+                    
+                </p>
+                <!-- <a href="#" class="btn btn-success lower">Tweets</a> -->
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div>
+                <img src="http://lorempixel.com/200/200/city/2/" alt="Texto Alternativo" class="img-circle img-thumbnail">
+                <h2>Influencers</h2>
+                <p>
+                         
+                </p>
+                <!--<a href="#" class="btn btn-success lower">Influencers</a> -->
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div>
+                <img src="http://lorempixel.com/200/200/city/3/" alt="Texto Alternativo" class="img-circle img-thumbnail">
+                <h2>Sentiment</h2>
+                <p>
+                   
+                </p>
+                <!-- <a href="#" class="btn btn-success lower">Sentiment</a> -->
+            </div>
+        </div>
+
+         
+    </div>
+</div>
+
+
+<!-- FEATURE LIST - END -->
+
+<!-- FOLLOW US LINKS -->
+<div class="container follow-us-container">
+    <div class="text-center follow-us">
+        Follow Us
+    </div>
+    <br />
+    <div class="text-center">
+        <a class="fa fa-facebook social-icon" href="#" target="_blank"></a>
+        <a class="fa fa-twitter social-icon" href="#" target="_blank"></a>
+        <a class="fa fa-linkedin social-icon" href="#" target="_blank"></a>
+        <a class="fa fa-google-plus social-icon" href="#" target="_blank"></a>
+    </div>
+</div>
+
+
+<!-- END FOLLOW US LINKS -->
+	
+{% endblock %}
+
+{% block nav %}
+	{% include "navigation.html" %}
+{% endblock %}

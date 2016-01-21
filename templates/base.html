@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Twitter Analytics">
+        <meta name="author" content="Quantum Solutions">
+        <title>Quantum Solutions - Tweet Suite</title>
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" type="text/css" href="/static/signin.css" />
+        <link rel="stylesheet" type="text/css" href="/static/style.css" />
+        <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="/static/font/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/static/font/css/bootstrap-social.css" />
+        <link rel="stylesheet" type="text/css" href="/static/font/css/bootstrap-table.min.css" />
+		<link rel="stylesheet" type="text/css" href="/static/c3.css">
+		<link rel="stylesheet" type="text/css" href="/static/indexstyle.css">
+
+		<!-- Required for graphs -->
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+
+        <script type="text/javascript" src="/static/dist/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/dist/js/jquery.validate.min"></script>
+        <script type="text/javascript" src="/static/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/dist/js/bootstrap-table.min.js"></script>
+		<!-- Required for converting URL text to click-able URL -->
+        <script type="text/javascript" src="/static/dist/js/jquery.linkify.min.js"></script>
+		<!-- Word Cloud -->
+		<script src="/static/spin.min.js" charset="utf-8"></script>
+		<script src="/static/moment.js"></script>
+		<script src="/static/wordcloud.js"></script>
+
+        <!-- Required for widgets -- >
+
+        <link rel="icon" href="/static/favicon.ico">
+		<script>
+					$(window).on('load', function () {
+						$('td').linkify();
+						$('p').linkify();
+					});
+		</script>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <!--<script  async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+	</head>
+	<body id="home">
+		{%block nav %}{% endblock %}
+		{% block body %}{% endblock %}
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div class="alert alert-danger" role="alert" id="flashed" style="float:left;" >
+				<ul class=flashes>
+				{% for message in messages %}
+					<li>{{ message | safe }} </li>
+				{% endfor %}
+				</ul>
+				</div>
+			{% endif %}
+		{% endwith %}
+		<div class="footer visible-lg">
+			{%block footer %}{% endblock %}
+		</div> <!-- footer -->
+		
+	</body>
+</html>
