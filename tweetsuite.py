@@ -4,6 +4,7 @@ Created on Sat Jan 16 12:50:34 2016
 
 @author: Quantum Solutions
 """
+import flask
 
 from flask import Flask, request, redirect, url_for
 from flask import render_template
