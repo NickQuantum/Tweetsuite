@@ -10,7 +10,7 @@ from flask import Flask, request, redirect, url_for
 from flask import render_template
 from flask.views import MethodView
 
-tweetsuite = Flask(__name__)
+tweetsuite = application = Flask(__name__)
 
 class HelloWorld(MethodView):
     def get(self):
