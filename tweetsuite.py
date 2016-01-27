@@ -4,20 +4,33 @@ Created on Sat Jan 16 12:50:34 2016
 
 @author: Quantum Solutions
 """
-
-from flask import Flask, request, redirect, url_for
-from flask import render_template
+#import flask
+from flask import Flask, request, redirect, url_for, render_template, session
 from flask.views import MethodView
+from classes.utils import settwitterapi, auth, sapi
 
+#Declare the application
 tweetsuite = Flask(__name__)
+tweetsuite.secret_key = "social"
 
-class HelloWorld(MethodView):
+class Mainline(MethodView):
+    def initialize_instance(self):
+        session.pop('query', None)              # Reset query value in session
+        session.pop('username', None)           # Reset username value in session
+        username = "demo"
+        settwitterapi(username)
+        return  
+
     def get(self):
+        self.initialize_instance()                   # call initialize_instance local method
         return render_template('index.html')
+        
+      
         
 class Search(MethodView):
     def post(self):
         query = request.form['Query']
+        session['query'] = query
         return redirect(url_for('result'))
         
 class Result(MethodView):
@@ -26,7 +39,7 @@ class Result(MethodView):
     
    
         
-tweetsuite.add_url_rule('/', view_func=HelloWorld.as_view('arbitrary'))
+tweetsuite.add_url_rule('/', view_func=Mainline.as_view('index'))
 tweetsuite.add_url_rule('/search', view_func=Search.as_view('search'))
 tweetsuite.add_url_rule('/result', view_func=Result.as_view('result'))
  
