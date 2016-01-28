@@ -7,7 +7,9 @@ Created on Thu Apr 16 01:01:00 2015
 import flask, flask.views
 import functools
 import tweepy
+import json
 import uuid
+from sys import platform as _platform
 
 sapi = 0
 auth = 0
@@ -47,5 +49,25 @@ def settwitterapi(username):
     sapi = tweepy.API(auth)
     
     print 'twitter account authenticated. stored in variable'
-    
     return
+    
+def getfilepath():
+    if _platform == "linux" or _platform == "linux2":
+        filepath = 'static/tweets/'
+    elif _platform == "win32":
+        filepath = 'static//tweets//'
+    
+    return filepath
+    
+    
+def getTweets(query):
+    flask.session['query'] = query
+    max_tweets = 300
+    searched_tweets = [status for status in tweepy.Cursor(sapi.search, q=query).items(max_tweets)]
+    filepath = getfilepath()
+    target = open(filepath + flask.session['uid']+'.txt', 'wb')
+    for tweet in searched_tweets:
+        tweet_str = json.dumps(tweet._json)
+        target.write(tweet_str + "\n")
+    
+    target.close()

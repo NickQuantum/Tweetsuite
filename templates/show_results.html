@@ -136,7 +136,9 @@
 			$("#statistics").addClass('hidden');
 			d3.select("#snagraph").remove();
 			$("#tweets").removeClass('hidden');
-			filename = "{{url_for('static', filename='tweets/sample_tweets.txt')}}";
+			filename = "{{url_for('static', filename='tweets/%s.txt' % filepath)}}";
+            //filename = filepath + '.txt';
+            window.alert(filename);
 			draw_tweet_table(filename);
 			
 		}
