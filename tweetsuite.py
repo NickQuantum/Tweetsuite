@@ -10,7 +10,7 @@ from flask.views import MethodView
 from classes.utils import settwitterapi, auth, sapi, getfilepath, getTweets
 
 #Declare the application
-tweetsuite = Flask(__name__)
+tweetsuite = application = Flask(__name__)
 tweetsuite.secret_key = "social"
 
 class Mainline(MethodView):
