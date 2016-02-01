@@ -1,0 +1,4 @@
+Flask==0.10.1
+Tweepy==3.5.0
+boto==2.39
+networkx==1.9
