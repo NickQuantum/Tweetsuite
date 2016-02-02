@@ -9,9 +9,13 @@ import utils
 import json
 import tweepy
 
+
+
 from flask import Flask, request, redirect, url_for
 from flask import render_template
 from flask.views import MethodView
+from classes.networkgraph import NetworkGraph
+
 
 class Search(MethodView):
     def post(self):
@@ -19,8 +23,7 @@ class Search(MethodView):
         tweepy_api = utils.InitializeTweepyAPI()
         max_tweets = 300
         
-        
-       
+        #Extract tweets using Tweepy Cursor and Write to File   
         searched_tweets = [status for status in tweepy.Cursor(tweepy_api.search, q=query).items(max_tweets)]
         filepath = 'static//tweets//'+ 'tweets_raw.json' 
         target = open(filepath, 'w')
@@ -30,6 +33,11 @@ class Search(MethodView):
             target.write(tweet_str + "\n")
         
         target.close()
+        
+        #Build and Write Network Graph JSon 
+        networkGraph = NetworkGraph()
+        networkGraph.build_network_graph()
+        networkGraph.write_networkgraph_json()
         
         
         return redirect(url_for('result'))
