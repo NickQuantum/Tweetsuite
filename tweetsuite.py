@@ -11,6 +11,7 @@ from flask import Flask, request, redirect, url_for
 from flask import render_template
 from flask.views import MethodView
 from classes.search import Search
+from classes.result import Result
 
 tweetsuite = application = Flask(__name__)
 
@@ -20,9 +21,7 @@ class HelloWorld(MethodView):
         
 
         
-class Result(MethodView):
-    def get(self):
-        return render_template('show_results.html')    
+ 
     
    
         
