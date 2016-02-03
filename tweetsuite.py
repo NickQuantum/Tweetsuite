@@ -18,13 +18,9 @@ tweetsuite = application = Flask(__name__)
 class HelloWorld(MethodView):
     def get(self):
         return render_template('index.html')
-        
 
-        
- 
+
     
-   
-        
 tweetsuite.add_url_rule('/', view_func=HelloWorld.as_view('arbitrary'))
 tweetsuite.add_url_rule('/search', view_func=Search.as_view('search'))
 tweetsuite.add_url_rule('/result', view_func=Result.as_view('result'))
