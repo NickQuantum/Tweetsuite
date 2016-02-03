@@ -5,20 +5,20 @@ Created on Sat Jan 16 12:50:34 2016
 @author: Quantum Solutions
 """
 
+
+
 from flask import Flask, request, redirect, url_for
 from flask import render_template
 from flask.views import MethodView
+from classes.search import Search
 
-tweetsuite = Flask(__name__)
+tweetsuite = application = Flask(__name__)
 
 class HelloWorld(MethodView):
     def get(self):
         return render_template('index.html')
         
-class Search(MethodView):
-    def post(self):
-        query = request.form['Query']
-        return redirect(url_for('result'))
+
         
 class Result(MethodView):
     def get(self):
