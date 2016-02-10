@@ -21,6 +21,7 @@ class Search(MethodView):
     def post(self):
         query = request.form['Query']
         tweepy_api = utils.InitializeTweepyAPI()
+        print tweepy_api
         max_tweets = 300
         
         #Extract tweets using Tweepy Cursor and Write to File   
