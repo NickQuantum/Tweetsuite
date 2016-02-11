@@ -1,5 +1,6 @@
 branch-defaults:
-  master:
+  
+master:
     environment: tweetsuite
 global:
   application_name: TweetSuite
