@@ -1,12 +1,10 @@
 branch-defaults:
-  login:
-    environment: null
-    group_suffix: null
-  master:
+  
+master:
     environment: tweetsuite
 global:
-  application_name: TweetSuite-dev
-  default_ec2_keyname: ts_keypair
+  application_name: TweetSuite
+  default_ec2_keyname: aws-eb
   default_platform: Python 2.7
   default_region: us-west-1
   profile: eb-cli
