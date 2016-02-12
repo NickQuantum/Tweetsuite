@@ -1,7 +1,4 @@
-branch-defaults:
-  
-master:
-    environment: tweetsuite
+branch-defaults: null
 global:
   application_name: TweetSuite
   default_ec2_keyname: aws-eb
@@ -9,3 +6,5 @@ global:
   default_region: us-west-1
   profile: eb-cli
   sc: git
+master:
+  environment: tweetsuite
