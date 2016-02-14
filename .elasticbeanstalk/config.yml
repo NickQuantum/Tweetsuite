@@ -1,4 +1,4 @@
-branch-defaults: null
+branch-defaults: master
 global:
   application_name: TweetSuite
   default_ec2_keyname: aws-eb
