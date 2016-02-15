@@ -8,6 +8,7 @@ Created on Sun Jan 24 22:35:04 2016
 import utils
 import json
 import tweepy
+import pandas as pd
 
 
 
@@ -26,6 +27,13 @@ class Search(MethodView):
         
         #Extract tweets using Tweepy Cursor and Write to File   
         searched_tweets = [status for status in tweepy.Cursor(tweepy_api.search, q=query).items(max_tweets)]
+        
+        #Start Statistics Code (TBD: Move to separate Statistics Class)
+        self.createStatistics(searched_tweets);
+        
+        #End Statistics Code
+        
+        #Write tweets to file        
         filepath = 'static//tweets//'+ 'tweets_raw.json' 
         target = open(filepath, 'w')
         
@@ -42,3 +50,43 @@ class Search(MethodView):
         
         
         return redirect(url_for('result'))
+
+    def createStatistics(self, tweets):
+        #Build Tweets Dataframe
+        searched_tweets = tweets
+        tweet_dataframe = pd.DataFrame()
+        tweet_dataframe['userName'] = [tweet.user.name for tweet in searched_tweets]
+        tweet_dataframe['text'] = [tweet.text for tweet in searched_tweets]
+        tweet_dataframe['retweetCount'] = [tweet.retweet_count for tweet in searched_tweets]
+        tweet_dataframe['userLocation'] = [tweet.user.location for tweet in searched_tweets]  
+        tweet_dataframe['urls'] = [tweet.entities["urls"] for tweet in searched_tweets]
+        tweet_dataframe['hashtags'] = [tweet.entities["hashtags"] for tweet in searched_tweets]        
+        
+        topUserNames = tweet_dataframe['userName'].value_counts()[:5]
+        topLocations = tweet_dataframe['userLocation'].value_counts()[:5]
+        topRetweets = tweet_dataframe[['text', 'retweetCount']].sort(['retweetCount'], ascending=[0])
+        topRetweets = topRetweets.drop_duplicates(cols = 'text', inplace = False)[:5]
+        topUrls = tweet_dataframe['urls']
+        
+        #Create URL SubSection DataFrame
+        topUrlSubsection = pd.DataFrame()
+        topUrls = topUrls.to_dict()
+        for key, value in topUrls.iteritems():
+            print key, 'corresponds to', topUrls[key]
+            DF = pd.DataFrame(topUrls[key])
+            print DF
+            topUrlSubsection = topUrlSubsection.append(DF)
+        topUrlSubsection = topUrlSubsection['display_url'].value_counts()[:5]
+        
+        #Convert DataFrames to JSON
+        topUserNamesJson = topUserNames.to_json(orient = 'index')
+        topRetweetsJson = topRetweets.to_json(orient = 'records')
+        topUrlJson = topUrlSubsection.to_json(orient = 'index')
+        
+        #Write JSON to Files
+        with open('static//tweets//topUserNames.json', 'w') as outfile:
+            json.dump(topUserNamesJson, outfile)
+        with open('static//tweets//topRetweets.json', 'w') as outfile:
+            json.dump(topRetweetsJson, outfile)
+        with open('static//tweets//topUrls.json', 'w') as outfile:
+            json.dump(topUrlJson, outfile) 
