@@ -274,7 +274,7 @@
 					window.alert(typeof(tweetsjson));
 					window.alert(tweetsjson);
 					for(var key in tweetsjson) {
-						$("#urls_table").append('<tr><td class="text-left">' + key.substring(0,30) + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+						$("#urls_table").append('<tr><td class="text-left">' + '<a target="_blank" href="http://'+key+ '">' + key.substring(0,30) + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
 					}
 					//alert( "Load was performed." );
 				});
