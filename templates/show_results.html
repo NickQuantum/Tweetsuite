@@ -139,7 +139,9 @@
 			$("#statistics").addClass('hidden');
 			d3.select("#snagraph").remove();
 			$("#tweets").removeClass('hidden');
+			var nocache = new Date().getTime();
 			filename = "{{url_for('static', filename='tweets/sample_tweets.txt')}}";
+			filename = filename + '?'+nocache;
 			draw_tweet_table(filename);
 			
 		}
