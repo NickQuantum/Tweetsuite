@@ -149,9 +149,8 @@
 			$("#statistics").addClass('hidden');
 			$("#tweets").addClass('hidden');
 			$("#network_graph").removeClass('hidden');
-			var nocache = new Date().getTime();
 			filename = "{{url_for('static', filename='tweets/sample_graph.json')}}";
-			filename = filename + '?'+nocache;
+			filename = filename + '?'+ new Date().getTime();
 			draw_network_graph(filename);
 			
 		}

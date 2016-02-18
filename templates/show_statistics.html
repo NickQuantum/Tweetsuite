@@ -229,8 +229,9 @@
 	
 		<script>
 			function draw_users_table() {
-	
+				
 				filename = "{{url_for('static', filename='tweets/topUserNames.json')}}";
+				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
@@ -248,6 +249,7 @@
 			function draw_retweet_table() {
 	
 				filename = "{{url_for('static', filename='tweets/topRetweets.json')}}";
+				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
@@ -266,6 +268,7 @@
 			function draw_urls_table() {
 	
 				filename = "{{url_for('static', filename='tweets/topUrls.json')}}";
+				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
