@@ -231,15 +231,15 @@
 			function draw_users_table() {
 	
 				filename = "{{url_for('static', filename='tweets/topUserNames.json')}}";
-				window.alert(filename);
+				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
 					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
 					var tweetsjson = JSON.parse(tweets);
-					window.alert(typeof(tweetsjson));
-					window.alert(tweetsjson);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweetsjson);
 					for(var key in tweetsjson) {
-						$("#users_table").append('<tr><td class="text-left">' + key + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+						$("#users_table").append('<tr><td class="text-left">' +  '<a target="_blank" href="http://www.twitter.com/'+key+ '">'+key + '</a></td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
 					}
 					//alert( "Load was performed." );
 				});
@@ -248,13 +248,13 @@
 			function draw_retweet_table() {
 	
 				filename = "{{url_for('static', filename='tweets/topRetweets.json')}}";
-				window.alert(filename);
+				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
 					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
 					var tweetsjson = JSON.parse(tweets);
-					window.alert(typeof(tweetsjson));
-					window.alert(tweets);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweets);
 					for(var key in tweetsjson) {
 						//window.alert("Yes!");
 						$("#retweet_table").append('<tr><td class="text-left">' + (tweetsjson[key].text).substring(0,30) + '</td><td class="text-right">' + tweetsjson[key].retweetCount + '</td></tr>');
@@ -266,13 +266,13 @@
 			function draw_urls_table() {
 	
 				filename = "{{url_for('static', filename='tweets/topUrls.json')}}";
-				window.alert(filename);
+				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
 					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
 					var tweetsjson = JSON.parse(tweets);
-					window.alert(typeof(tweetsjson));
-					window.alert(tweetsjson);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweetsjson);
 					for(var key in tweetsjson) {
 						$("#urls_table").append('<tr><td class="text-left">' + '<a target="_blank" href="http://'+key+ '">' + key.substring(0,30) + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
 					}

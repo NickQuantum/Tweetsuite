@@ -23,7 +23,7 @@ class Search(MethodView):
         query = request.form['Query']
         tweepy_api = utils.InitializeTweepyAPI()
         
-        max_tweets = 10
+        max_tweets = 300
         
         #Extract tweets using Tweepy Cursor and Write to File   
         searched_tweets = [status for status in tweepy.Cursor(tweepy_api.search, q=query).items(max_tweets)]
@@ -55,7 +55,7 @@ class Search(MethodView):
         #Build Tweets Dataframe
         searched_tweets = tweets
         tweet_dataframe = pd.DataFrame()
-        tweet_dataframe['userName'] = [tweet.user.name for tweet in searched_tweets]
+        tweet_dataframe['userName'] = [tweet.user.screen_name for tweet in searched_tweets]
         tweet_dataframe['text'] = [tweet.text for tweet in searched_tweets]
         tweet_dataframe['retweetCount'] = [tweet.retweet_count for tweet in searched_tweets]
         tweet_dataframe['userLocation'] = [tweet.user.location for tweet in searched_tweets]  
@@ -72,9 +72,7 @@ class Search(MethodView):
         topUrlSubsection = pd.DataFrame()
         topUrls = topUrls.to_dict()
         for key, value in topUrls.iteritems():
-            print key, 'corresponds to', topUrls[key]
             DF = pd.DataFrame(topUrls[key])
-            print DF
             topUrlSubsection = topUrlSubsection.append(DF)
         topUrlSubsection = topUrlSubsection['display_url'].value_counts()[:5]
         
