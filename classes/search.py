@@ -67,6 +67,7 @@ class Search(MethodView):
         topRetweets = tweet_dataframe[['text', 'retweetCount']].sort(['retweetCount'], ascending=[0])
         topRetweets = topRetweets.drop_duplicates(cols = 'text', inplace = False)[:5]
         topUrls = tweet_dataframe['urls']
+        topHashTags = tweet_dataframe['hashtags']
         
         #Create URL SubSection DataFrame
         topUrlSubsection = pd.DataFrame()
@@ -76,10 +77,21 @@ class Search(MethodView):
             topUrlSubsection = topUrlSubsection.append(DF)
         topUrlSubsection = topUrlSubsection['display_url'].value_counts()[:5]
         
+        #Create HashTag Subsection Dataframe
+        topHashTagSubsection = pd.DataFrame()
+        topHashTags = topHashTags.to_dict()
+        for key, value in topHashTags.iteritems():
+            #print key, 'corresponds to', topUrls[key]
+            DF = pd.DataFrame(topHashTags[key])
+            #print DF
+            topHashTagSubsection = topHashTagSubsection.append(DF)
+        topHashTagSubsection = topHashTagSubsection['text'].value_counts()[:5]        
+        
         #Convert DataFrames to JSON
         topUserNamesJson = topUserNames.to_json(orient = 'index')
         topRetweetsJson = topRetweets.to_json(orient = 'records')
         topUrlJson = topUrlSubsection.to_json(orient = 'index')
+        topHashTagJson = topHashTagSubsection.to_json(orient = 'index')
         
         #Write JSON to Files
         with open('static//tweets//topUserNames.json', 'w') as outfile:
@@ -88,3 +100,5 @@ class Search(MethodView):
             json.dump(topRetweetsJson, outfile)
         with open('static//tweets//topUrls.json', 'w') as outfile:
             json.dump(topUrlJson, outfile) 
+        with open('static//tweets//topHashTags.json', 'w') as outfile:
+            json.dump(topHashTagJson, outfile) 

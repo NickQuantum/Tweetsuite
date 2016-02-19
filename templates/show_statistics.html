@@ -55,35 +55,14 @@
 		  <div class="col-xs-3">
 			  
 			<div class="table-responsive">
-				   <table class="table table-striped">
+				   <table class="table table-striped" id="hashtags_table">
 					<thead class="thead-default">
 					  <tr>
 						<th><h4>Top Hashtags</h4></th>
 						<th></th>
 					  </tr>
 					</thead>
-					<tbody>
-					  <tr>
-						<td>@mrskathyking</td>
-						<td class="text-right">576</td>
-					  </tr>
-					  <tr>
-						<td>@therockfather</td>
-						<td class="text-right">804</td>
-					  </tr>
-					  <tr>
-						<td>@kouponkaren</td>
-						<td class="text-right">239</td>
-					  </tr>
-					  <tr>
-						<td>@therockfather</td>
-						<td class="text-right">804</td>
-					  </tr>
-					  <tr>
-						<td>@kouponkaren</td>
-						<td class="text-right">239</td>
-					  </tr>
-					</tbody>
+					
 				  </table>
 				</div>    
 			</div>
@@ -230,6 +209,9 @@
 		<script>
 			function draw_users_table() {
 				
+				$(function() {
+					$("#users_table").find("tr:gt(0)").remove();
+				});
 				filename = "{{url_for('static', filename='tweets/topUserNames.json')}}";
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
@@ -240,14 +222,17 @@
 					//window.alert(typeof(tweetsjson));
 					//window.alert(tweetsjson);
 					for(var key in tweetsjson) {
-						$("#users_table").append('<tr><td class="text-left">' +  '<a target="_blank" href="http://www.twitter.com/'+key+ '">'+key + '</a></td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+						$("#users_table").append('<tr><td class="text-left">' +  '<a target="_blank" href="http://www.twitter.com/'+key+ '">' + '@' + key + '</a></td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
 					}
 					//alert( "Load was performed." );
 				});
 			}
 			
 			function draw_retweet_table() {
-	
+				
+				$(function() {
+					$("#retweet_table").find("tr:gt(0)").remove();
+				});
 				filename = "{{url_for('static', filename='tweets/topRetweets.json')}}";
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
@@ -266,7 +251,10 @@
 			}		
 			
 			function draw_urls_table() {
-	
+				
+				$(function() {
+					$("#urls_table").find("tr:gt(0)").remove();
+				});
 				filename = "{{url_for('static', filename='tweets/topUrls.json')}}";
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
@@ -278,6 +266,27 @@
 					//window.alert(tweetsjson);
 					for(var key in tweetsjson) {
 						$("#urls_table").append('<tr><td class="text-left">' + '<a target="_blank" href="http://'+key+ '">' + key.substring(0,30) + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+					}
+					//alert( "Load was performed." );
+				});
+			}
+			
+			function draw_hashtags_table() {
+				
+				$(function() {
+					$("#hashtags_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topHashTags.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				//window.alert(filename);
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweetsjson);
+					for(var key in tweetsjson) {
+						$("#hashtags_table").append('<tr><td class="text-left">' + '#' + key.substring(0,30) + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
 					}
 					//alert( "Load was performed." );
 				});
