@@ -102,10 +102,10 @@
 		
 	</div>
 	
-	<div id='statistics' class="col col-lg-12 text-center hidden " style="margin-top:0px ;">
+	<div id='statistics' class="col col-lg-12 text-center hidden" style="margin-top:0px ;">
 
 		{% include 'show_statistics.html' %}
-		
+				
 	</div>
 	
 	<div id='network_graph' class="col col-lg-12 text-center hidden " style="margin-top:0px ;">
@@ -156,6 +156,8 @@
 			draw_network_graph(filename);
 			
 		}
+		
+		show_statistics();
 	</script>
 {% endblock %}
 
