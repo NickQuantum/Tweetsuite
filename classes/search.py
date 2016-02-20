@@ -62,6 +62,8 @@ class Search(MethodView):
         tweet_dataframe['userLocation'] = [tweet.user.location for tweet in searched_tweets]  
         tweet_dataframe['urls'] = [tweet.entities["urls"] for tweet in searched_tweets]
         tweet_dataframe['hashtags'] = [tweet.entities["hashtags"] for tweet in searched_tweets]        
+        tweet_dataframe['mentions'] = [tweet.entities["user_mentions"] for tweet in searched_tweets]
+        tweet_dataframe['language'] = [tweet.user.lang for tweet in searched_tweets]        
         
         topUserNames = tweet_dataframe['userName'].value_counts()[:5]
         topLocations = tweet_dataframe['userLocation'].value_counts()[:5]
@@ -69,6 +71,8 @@ class Search(MethodView):
         topRetweets = topRetweets.drop_duplicates(cols = 'text', inplace = False)[:5]
         topUrls = tweet_dataframe['urls']
         topHashTags = tweet_dataframe['hashtags']
+        topMentions = tweet_dataframe['mentions']
+        topLanguages = tweet_dataframe['language'].value_counts()[:5]
         
         #Create URL SubSection DataFrame
         topUrlSubsection = pd.DataFrame()
@@ -82,11 +86,17 @@ class Search(MethodView):
         topHashTagSubsection = pd.DataFrame()
         topHashTags = topHashTags.to_dict()
         for key, value in topHashTags.iteritems():
-            #print key, 'corresponds to', topUrls[key]
             DF = pd.DataFrame(topHashTags[key])
-            #print DF
             topHashTagSubsection = topHashTagSubsection.append(DF)
         topHashTagSubsection = topHashTagSubsection['text'].value_counts()[:5]
+        
+        #Create Mentions Subsection Dataframe
+        topMentionsSubsection = pd.DataFrame()
+        topMentions = topMentions.to_dict()
+        for key, value in topMentions.iteritems():
+            DF = pd.DataFrame(topMentions[key])
+            topMentionsSubsection = topMentionsSubsection.append(DF)
+        topMentionsSubsection = topMentionsSubsection['screen_name'].value_counts()[:5]
 
         #Create TopLocations DataFrame
         topLocations = tweet_dataframe['userLocation']
@@ -100,6 +110,8 @@ class Search(MethodView):
         topUrlJson = topUrlSubsection.to_json(orient = 'index')
         topHashTagJson = topHashTagSubsection.to_json(orient = 'index')
         topLocationsJson = topLocations.to_json(orient = 'index')
+        topMentionsJson = topMentionsSubsection.to_json(orient = 'index')
+        topLanguagesJson = topLanguages.to_json(orient = 'index')        
         
         #Write JSON to Files
         with open('static//tweets//topUserNames.json', 'w') as outfile:
@@ -112,3 +124,7 @@ class Search(MethodView):
             json.dump(topHashTagJson, outfile) 
         with open('static//tweets//topLocations.json', 'w') as outfile:
             json.dump(topLocationsJson, outfile) 
+        with open('static//tweets//topMentions.json', 'w') as outfile:
+            json.dump(topMentionsJson, outfile) 
+        with open('static//tweets//topLanguages.json', 'w') as outfile:
+            json.dump(topLanguagesJson, outfile) 

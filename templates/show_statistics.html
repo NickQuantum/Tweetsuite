@@ -70,35 +70,14 @@
 		  <div class="col-xs-3">
 			  
 			<div class="table-responsive">
-				   <table class="table table-striped">
+				   <table class="table table-striped" id = "mentions_table">
 					<thead class="thead-default">
 					  <tr>
 						<th><h4>Top Mentions</h4></th>
 						<th></th>
 					  </tr>
 					</thead>
-					<tbody>
-					  <tr>
-						<td>@mrskathyking</td>
-						<td class="text-right">576</td>
-					  </tr>
-					  <tr>
-						<td>@therockfather</td>
-						<td class="text-right">804</td>
-					  </tr>
-					  <tr>
-						<td>@kouponkaren</td>
-						<td class="text-right">239</td>
-					  </tr>
-					  <tr>
-						<td>@therockfather</td>
-						<td class="text-right">804</td>
-					  </tr>
-					  <tr>
-						<td>@kouponkaren</td>
-						<td class="text-right">239</td>
-					  </tr>
-					</tbody>
+					
 				  </table>
 				</div>    
 			</div>
@@ -136,35 +115,14 @@
 		  <div class="col-xs-3">
 			  
 			<div class="table-responsive">
-				   <table class="table table-striped">
+				   <table class="table table-striped" id = "languages_table">
 					<thead class="thead-default">
 					  <tr>
 						<th><h4>Top Languages</h4></th>
 						<th></th>
 					  </tr>
 					</thead>
-					<tbody>
-					  <tr>
-						<td>@mrskathyking</td>
-						<td class="text-right">576</td>
-					  </tr>
-					  <tr>
-						<td>@therockfather</td>
-						<td class="text-right">804</td>
-					  </tr>
-					  <tr>
-						<td>@kouponkaren</td>
-						<td class="text-right">239</td>
-					  </tr>
-					  <tr>
-						<td>@therockfather</td>
-						<td class="text-right">804</td>
-					  </tr>
-					  <tr>
-						<td>@kouponkaren</td>
-						<td class="text-right">239</td>
-					  </tr>
-					</tbody>
+					
 				  </table>
 				</div>    
 			</div>
@@ -292,4 +250,43 @@
 				});
 			}
 			
+			function draw_mentions_table() {
+		
+				$(function() {
+					$("#mentions_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topMentions.json')}}";
+				
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					
+					for(var key in tweetsjson) {
+						$("#mentions_table").append('<tr><td class="text-left">' +  '<a target="_blank" href="http://www.twitter.com/'+key+ '">'+ '@' + key + '</a></td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+						
+					}
+					
+				});
+			}
+			
+			function draw_languages_table() {
+		
+				$(function() {
+					$("#languages_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topLanguages.json')}}";
+				
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					
+					for(var key in tweetsjson) {
+						$("#languages_table").append('<tr><td class="text-left">' + key + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+						
+					}
+					
+				});
+			}
 		</script>
