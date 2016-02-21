@@ -235,6 +235,7 @@
 					$("#mentions_table").find("tr:gt(0)").remove();
 				});
 				filename = "{{url_for('static', filename='tweets/topMentions.json')}}";
+				filename = filename + '?'+ new Date().getTime();
 				
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
@@ -255,7 +256,7 @@
 					$("#languages_table").find("tr:gt(0)").remove();
 				});
 				filename = "{{url_for('static', filename='tweets/topLanguages.json')}}";
-				
+				filename = filename + '?'+ new Date().getTime();
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
 					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
@@ -276,13 +277,14 @@
 					$("#words_table").find("tr:gt(0)").remove();
 				});
 				filename = "{{url_for('static', filename='tweets/topWords.json')}}";
-				window.alert(filename);
+				filename = filename + '?'+ new Date().getTime();
+				//window.alert(filename);
 				$.get( filename, function( data ) {
 					var tweets = data;
-					window.alert(tweets);
+					//window.alert(tweets);
 					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
 					var tweetsjson = JSON.parse(tweets);
-					window.alert(typeof(tweetsjson));
+					//window.alert(typeof(tweetsjson));
 					//window.alert(tweetsjson);
 					for(var key in tweetsjson) {
 						$("#words_table").append('<tr><td class="text-left">' + tweetsjson[key][0]+ '</td><td class="text-right">' + tweetsjson[key][1] + '</td></tr>');
