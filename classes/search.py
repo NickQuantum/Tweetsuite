@@ -10,6 +10,8 @@ import json
 import tweepy
 import pandas as pd
 import numpy as np
+import nltk
+import re
 
 
 
@@ -51,6 +53,23 @@ class Search(MethodView):
         
         
         return redirect(url_for('result'))
+        
+   
+    def processTweet(self, tweet):
+        # process the tweets
+    
+        #Convert to lower case
+        tweet = tweet.lower()
+        #Convert www.* or https?://* to URL
+        tweet = re.sub('((www\.[^\s]+)|(https?://[^\s]+))','URL',tweet)
+        #Remove additional white spaces
+        tweet = re.sub('[\s]+', ' ', tweet)
+        #Replace #word with word
+        tweet = re.sub(r'#([^\s]+)', r'\1', tweet)
+        #trim
+        tweet = tweet.strip('\'"')
+        return tweet
+    
 
     def createStatistics(self, tweets):
         #Build Tweets Dataframe
@@ -102,7 +121,20 @@ class Search(MethodView):
         topLocations = tweet_dataframe['userLocation']
         topLocations = topLocations.replace('', np.nan, regex=True)
         topLocations = topLocations.dropna()
-        topLocations = topLocations.value_counts()[:5]        
+        topLocations = topLocations.value_counts()[:5]   
+        
+        #Get Top Words from Tweets
+        topWords = tweet_dataframe['text'].values.tolist()
+        #topWords = topWords.values.tolist()
+        topWordsList = []
+        for sentence in topWords:
+            sentence = self.processTweet(sentence)
+            topWordsList = topWordsList + sentence.split()
+        #Vocab = set(topWordsList)
+        long_words = [w for w in topWordsList if len(w) > 6]
+        
+        fdist = nltk.FreqDist(long_words)
+        topWords = fdist.most_common(5)
         
         #Convert DataFrames to JSON
         topUserNamesJson = topUserNames.to_json(orient = 'index')
@@ -128,3 +160,5 @@ class Search(MethodView):
             json.dump(topMentionsJson, outfile) 
         with open('static//tweets//topLanguages.json', 'w') as outfile:
             json.dump(topLanguagesJson, outfile) 
+        with open('static//tweets//topWords.json', 'w') as outfile:
+            json.dump(topWords, outfile) 
