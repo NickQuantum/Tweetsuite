@@ -279,7 +279,7 @@
 				filename = "{{url_for('static', filename='tweets/topWords.json')}}";
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
-				$.get( filename, function( data ) {
+				$.getJSON( filename, function( data ) {
 					var tweets = data;
 					//window.alert(tweets);
 					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";

@@ -135,6 +135,7 @@ class Search(MethodView):
         
         fdist = nltk.FreqDist(long_words)
         topWords = fdist.most_common(5)
+        topWords = json.dumps(topWords)
         
         #Convert DataFrames to JSON
         topUserNamesJson = topUserNames.to_json(orient = 'index')
