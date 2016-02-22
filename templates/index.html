@@ -83,12 +83,13 @@
 		<div class="col-sm-12 col-md-12 col-lg-12">
 		
 			<form action="{{url_for('search')}}" role="search" method="post" class= "form-inline" style="padding-top:0px;" onsubmit="displayMessage()">
-				<div class="input-group form-group input-group-lg col-lg-11">
-					<input type="text" class="form-control input-lg" id="Query" name="Query" placeholder= "Keyword search" required >
+				<div class="input-group form-group input-group-lg col-lg-12 col-lg-offset-1">
+					<input type="text" class="form-control" id="Query" name="Query" placeholder= "Keyword search" required >
+					<span class="input-group-btn">
+						<button type = "submit" class="btn btn-primary" type="button"><i class="glyphicon glyphicon-search"></i></button>
+					</span>
 				</div>
-				<button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-search"></i></button>
 			</form>	
-		       		
 		</div>
 	</div>
 </div>
