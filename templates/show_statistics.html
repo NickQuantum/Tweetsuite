@@ -160,7 +160,7 @@
 					//window.alert(tweets);
 					for(var key in tweetsjson) {
 						//window.alert("Yes!");
-						$("#retweet_table").append('<tr><td>' + '<a href="#" data-toggle="tooltip" title="' + tweetsjson[key].text + '">'  + (tweetsjson[key].text).substring(0,30) + '</a></td><td class="text-right">' + tweetsjson[key].retweetCount + '</td></tr>');
+						$("#retweet_table").append('<tr><td class="text-left">' + '<a href="#" data-toggle="tooltip" title="' + tweetsjson[key].text + '">'  + (tweetsjson[key].text).substring(0,30) + '</a></td><td class="text-right">' + tweetsjson[key].retweetCount + '</td></tr>');
 					}
 					//alert( "Load was performed." );
 				});
