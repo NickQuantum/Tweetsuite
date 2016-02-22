@@ -77,6 +77,24 @@
 
 <!-- Icon Panels - END -->
 
+<!-- Search Button - START --->
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12">
+		
+			<form action="{{url_for('search')}}" role="search" method="post" class= "form-inline" style="padding-top:0px;" onsubmit="displayMessage()">
+				<div class="input-group form-group input-group-lg col-lg-11">
+					<input type="text" class="form-control input-lg" id="Query" name="Query" placeholder= "Keyword search" required >
+				</div>
+				<button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-search"></i></button>
+			</form>	
+		       		
+		</div>
+	</div>
+</div>
+
+<!-- Search Button - END --->
+
 <!-- FEATURE LIST - START -->
 
 <div class="container" id="featurelist">

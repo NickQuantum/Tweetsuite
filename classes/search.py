@@ -22,6 +22,12 @@ from classes.networkgraph import NetworkGraph
 
 
 class Search(MethodView):
+    def get(self):
+        return render_template('index.html')
+        
+ 
+    
+    
     def post(self):
         query = request.form['Query']
         tweepy_api = utils.InitializeTweepyAPI()
