@@ -10,12 +10,13 @@ import json
 from flask import Flask, request, redirect, url_for
 from flask import render_template
 from flask.views import MethodView
+import utils
 
 class Result(MethodView):
     def get(self):
         
         #Parse raw tweets file and create list of tweets for Tweet Table
-        filepath = 'static//tweets//'+ 'tweets_raw.json'         
+        filepath = utils.filelocation + 'tweets_raw.json'
         tweets_data = []
         tweets_file = open(filepath, "r")
         for line in tweets_file:
@@ -32,7 +33,7 @@ class Result(MethodView):
                 continue
         
         #Write list of tweets for Tweet Table into a File
-        filepath = 'static//tweets//'+ 'sample_tweets.txt' 
+        filepath = utils.filelocation + 'sample_tweets.txt'
         target = open(filepath, 'w')
         
         for tweet in tweets_data:

@@ -6,8 +6,10 @@ Created on Wed Jan 27 00:45:30 2016
 """
 import tweepy
 import flask
+import uuid
 
-tweepy_api = 0      # declare global variable
+tweepy_api = 0      # declare global variable to store tweepy api
+filelocation = None   # declare global variable to store file prefix
 
 def InitializeTweepyAPI():
     session_username = 0
@@ -18,6 +20,10 @@ def InitializeTweepyAPI():
 
     if session_username is None:
         flask.session['username'] = "demo"            # Set username in session
+        uid = uuid.uuid4()                          # Set unique session id
+        flask.session['uid'] = uid.urn[9:]
+        global filelocation
+        filelocation = "static//tweets//" + uid.urn[9:] + "_"
     
         consumer_key = "6XhZ7RX6saKTPEqHfGMVmLOzU"
         consumer_secret = "iNVdx2FQMInmdlwqMDMQKn6FkwXAN11QbuPhJ27mOlEDIkL5E2"
