@@ -1,0 +1,296 @@
+
+		<div class="row-fluid">
+
+			<div class="col-xs-3">
+			  
+			  <div class="table-responsive">
+				<table class="table table-striped" id="users_table">
+				  <thead class="thead-default">
+					<tr>
+					  <th><h4>Top Users</h4></th>
+					  <th></th>
+					</tr>
+				  </thead>
+				  
+				</table>
+			</div>
+		  </div>
+		  
+		  <div class="col-xs-3">
+			  
+			<div class="table-responsive">
+				   <table class="table table-striped" id = "words_table">
+					<thead class="thead-default">
+					  <tr>
+						<th><h4>Top Words</h4></th>
+						<th></th>
+					  </tr>
+					</thead>
+					
+				  </table>
+				</div>    
+			</div>
+  
+		  <div class="col-xs-3">
+			  
+			<div class="table-responsive">
+				   <table class="table table-striped" id="hashtags_table">
+					<thead class="thead-default">
+					  <tr>
+						<th><h4>Top Hashtags</h4></th>
+						<th></th>
+					  </tr>
+					</thead>
+					
+				  </table>
+				</div>    
+			</div>
+		  
+		  <div class="col-xs-3">
+			  
+			<div class="table-responsive">
+				   <table class="table table-striped" id = "mentions_table">
+					<thead class="thead-default">
+					  <tr>
+						<th><h4>Top Mentions</h4></th>
+						<th></th>
+					  </tr>
+					</thead>
+					
+				  </table>
+				</div>    
+			</div>
+		  
+		  <div class="col-xs-3">
+			  
+			<div class="table-responsive">
+				   <table class="table table-striped" id="urls_table">
+					<thead class="thead-default">
+					  <tr>
+						<th><h4>Top URLs</h4></th>
+						<th></th>
+					  </tr>
+					</thead>
+					
+				  </table>
+				</div>    
+			</div>
+		  
+		  <div class="col-xs-3">
+			  
+			<div class="table-responsive">
+				   <table class="table table-striped" id="retweet_table">
+					<thead class="thead-default">
+					  <tr>
+						<th><h4>Top Retweets</h4></th>
+						<th></th>
+					  </tr>
+					</thead>
+					
+				  </table>
+				</div>    
+			</div>
+		  
+		  <div class="col-xs-3">
+			  
+			<div class="table-responsive">
+				   <table class="table table-striped" id = "languages_table">
+					<thead class="thead-default">
+					  <tr>
+						<th><h4>Top Languages</h4></th>
+						<th></th>
+					  </tr>
+					</thead>
+					
+				  </table>
+				</div>    
+			</div>
+		  
+		  <div class="col-xs-3">
+			  
+			<div class="table-responsive">
+				   <table class="table table-striped" id="locations_table">
+					<thead class="thead-default">
+					  <tr>
+						<th><h4>Top Places</h4></th>
+						<th></th>
+					  </tr>
+					</thead>
+					
+				  </table>
+				</div>    
+			</div>
+		</div>
+	
+		<script>
+			function draw_users_table() {
+				
+				$(function() {
+					$("#users_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topUserNames.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				//window.alert(filename);
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweetsjson);
+					for(var key in tweetsjson) {
+						$("#users_table").append('<tr><td class="text-left">' +  '<a target="_blank" href="http://www.twitter.com/'+key+ '">' + '@' + key + '</a></td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+					}
+					//alert( "Load was performed." );
+				});
+			}
+			
+			function draw_retweet_table() {
+				
+				$(function() {
+					$("#retweet_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topRetweets.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				//window.alert(filename);
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweets);
+					for(var key in tweetsjson) {
+						//window.alert("Yes!");
+						$("#retweet_table").append('<tr><td class="text-left">' + '<a href="#" data-toggle="tooltip" title="' + tweetsjson[key].text + '">'  + (tweetsjson[key].text).substring(0,30) + '</a></td><td class="text-right">' + tweetsjson[key].retweetCount + '</td></tr>');
+					}
+					//alert( "Load was performed." );
+				});
+			}		
+			
+			function draw_urls_table() {
+				
+				$(function() {
+					$("#urls_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topUrls.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				//window.alert(filename);
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweetsjson);
+					for(var key in tweetsjson) {
+						$("#urls_table").append('<tr><td class="text-left">' + '<a target="_blank" href="http://'+key+ '">' + key.substring(0,30) + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+					}
+					//alert( "Load was performed." );
+				});
+			}
+			
+			function draw_hashtags_table() {
+				
+				$(function() {
+					$("#hashtags_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topHashTags.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				//window.alert(filename);
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweetsjson);
+					for(var key in tweetsjson) {
+						$("#hashtags_table").append('<tr><td class="text-left">' + '#' + key.substring(0,30) + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+					}
+					//alert( "Load was performed." );
+				});
+			}
+			
+			function draw_locations_table() {
+				
+				$(function() {
+					$("#locations_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topLocations.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				//window.alert(filename);
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweetsjson);
+					for(var key in tweetsjson) {
+						$("#locations_table").append('<tr><td class="text-left">' + key.substring(0,30) + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+					}
+					//alert( "Load was performed." );
+				});
+			}
+			
+			function draw_mentions_table() {
+		
+				$(function() {
+					$("#mentions_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topMentions.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					
+					for(var key in tweetsjson) {
+						$("#mentions_table").append('<tr><td class="text-left">' +  '<a target="_blank" href="http://www.twitter.com/'+key+ '">'+ '@' + key + '</a></td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+						
+					}
+					
+				});
+			}
+			
+			function draw_languages_table() {
+		
+				$(function() {
+					$("#languages_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topLanguages.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					
+					for(var key in tweetsjson) {
+						$("#languages_table").append('<tr><td class="text-left">' + key + '</td><td class="text-right">' + tweetsjson[key] + '</td></tr>');
+						
+					}
+					
+				});
+			}
+			
+			
+			function draw_words_table() {
+		
+				$(function() {
+					$("#words_table").find("tr:gt(0)").remove();
+				});
+				filename = "{{url_for('static', filename='tweets/topWords.json')}}";
+				filename = filename + '?'+ new Date().getTime();
+				//window.alert(filename);
+				$.getJSON( filename, function( data ) {
+					var tweets = data;
+					//window.alert(tweets);
+					//var tweets = "{\"Donald Pemberton\":15,\"Greneehays\":7,\"PolitDecals\":5,\"Radical Decals\":4,\"Decals AllDay\":4}";
+					var tweetsjson = JSON.parse(tweets);
+					//window.alert(typeof(tweetsjson));
+					//window.alert(tweetsjson);
+					for(var key in tweetsjson) {
+						$("#words_table").append('<tr><td class="text-left">' + tweetsjson[key][0]+ '</td><td class="text-right">' + tweetsjson[key][1] + '</td></tr>');
+						
+					}
+					//alert( "Load was performed." );
+				});
+			}
+		</script>
