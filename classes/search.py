@@ -30,7 +30,7 @@ class Search(MethodView):
     
     def post(self):
         query = request.form['Query']
-        tweepy_api = utils.InitializeTweepyAPI()
+        tweepy_api = utils.tweepy_api
         
         max_tweets = 300
         
@@ -43,7 +43,7 @@ class Search(MethodView):
         #End Statistics Code
         
         #Write tweets to file        
-        filepath = 'static//tweets//'+ 'tweets_raw.json' 
+        filepath = utils.filelocation + 'tweets_raw.json' 
         target = open(filepath, 'w')
         
         for tweet in searched_tweets:

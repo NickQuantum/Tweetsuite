@@ -12,6 +12,7 @@ from flask import render_template, session
 from flask.views import MethodView
 from classes.search import Search
 from classes.result import Result
+from classes.utils import InitializeTweepyAPI
 
 tweetsuite = application = Flask(__name__)
 tweetsuite.secret_key = "social"                 # needed for sessions
@@ -20,6 +21,7 @@ class Mainline(MethodView):
     def get(self):
         session.pop('query', None)              # Reset query value in session
         session.pop('username', None)           # Reset username value in session
+        initialize = InitializeTweepyAPI()
         return render_template('index.html')
 
 
