@@ -18,23 +18,27 @@
 
 <div class="container" style="margin-top:5px;">
 		
-	   <table class="table table-hover table-bordered table-striped" id="tweetstable" style="border-width:2px;">
-		   <tr> 
-			<th style="font-size:18px;">Id</th>
-			<th style="font-size:18px;">User</th>
-			<th style="font-size:18px;">Text</th>
-			<th style="font-size:18px;">Hashtag</th>
-		  </tr>
-		 
-		{% for i in range(tweets|length) %}
-		  <tr>
-			<td> {{i+1}} </td>
-			<td>{{ tweets[i][1] }}</td>
-			<td>{{ tweets[i][0] }}</td>
-			<td>{{ "#"+ " #".join(tweets[i][2]) }}</td>
-		  </tr>
-		  {% endfor %}
-		</table> 
+	   <div class="table-responsive">
+		   <table class="table table-hover table-bordered table-striped" id="tweetstable" style="border-width:2px;">
+			   <thead class="thead-default text-center">
+				   <tr> 
+					<th class="text-center" style="font-size:18px;">Id</th>
+					<th class="text-center"style="font-size:18px;">User</th>
+					<th class="text-center" style="font-size:18px;">Text</th>
+					<th class="text-center" style="font-size:18px;">Hashtag</th>
+				  </tr>
+			  </thead>
+			 
+			{% for i in range(tweets|length) %}
+			  <tr>
+				<td> {{i+1}} </td>
+				<td>{{ tweets[i][1] }}</td>
+				<td class="text-left">{{ tweets[i][0] }}</td>
+				<td class="text-left">{{ "#"+ " #".join(tweets[i][2]) }}</td>
+			  </tr>
+			  {% endfor %}
+			</table> 
+		</div>
 		
 		
 </div>	<!-- end container -->
