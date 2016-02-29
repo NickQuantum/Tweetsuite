@@ -32,7 +32,7 @@ class Search(MethodView):
         query = request.form['Query']
         tweepy_api = utils.tweepy_api
         
-        max_tweets = 300
+        max_tweets = 1500
         
         #Extract tweets using Tweepy Cursor and Write to File   
         searched_tweets = [status for status in tweepy.Cursor(tweepy_api.search, q=query).items(max_tweets)]
