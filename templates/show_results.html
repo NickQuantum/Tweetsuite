@@ -102,10 +102,10 @@
 		
 	</div>
 	
-	<div id='statistics' class="col col-lg-12 text-center hidden " style="margin-top:0px ;">
+	<div id='statistics' class="col col-lg-12 text-center hidden" style="margin-top:0px ;">
 
 		{% include 'show_statistics.html' %}
-		
+				
 	</div>
 	
 	<div id='network_graph' class="col col-lg-12 text-center hidden " style="margin-top:0px ;">
@@ -129,6 +129,14 @@
 			$("#tweets").addClass('hidden');
 			$("#statistics").removeClass('hidden');
 			d3.select("#snagraph").remove();
+			draw_users_table();
+			draw_retweet_table();
+			draw_urls_table();
+			draw_hashtags_table();
+			draw_locations_table();
+			draw_mentions_table();
+			draw_languages_table();
+			draw_words_table();
 		}
 		
 		function show_tweets(){
@@ -147,9 +155,12 @@
 			$("#tweets").addClass('hidden');
 			$("#network_graph").removeClass('hidden');
 			filename = "{{url_for('static', filename='tweets/sample_graph.json')}}";
+			filename = filename + '?'+ new Date().getTime();
 			draw_network_graph(filename);
 			
 		}
+		
+		show_statistics();
 	</script>
 {% endblock %}
 

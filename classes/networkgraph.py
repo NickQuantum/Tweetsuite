@@ -15,9 +15,9 @@ class NetworkGraph():
     def __init__(self):    
         self.g = nx.Graph()
         
-        self.filepath = 'static//tweets//'+ 'tweets_raw.json' 
+        self.filepath = utils.filelocation + 'tweets_raw.json' 
         self.tweets_file = open(self.filepath, "r")
-        self.tweepy_api = utils.InitializeTweepyAPI()    
+        self.tweepy_api = utils.tweepy_api ##utils.InitializeTweepyAPI()    
         
         #Initialize all the Dictionaries and Lists that are needed for the Network 
         #Graph.
