@@ -123,6 +123,7 @@
 	<script>
 	
 		var filename="emptyfilename";
+            var filepath = "{{filepath}}";
 		
 		function show_statistics(){
 			
@@ -144,7 +145,8 @@
 			$("#statistics").addClass('hidden');
 			d3.select("#snagraph").remove();
 			$("#tweets").removeClass('hidden');
-			filename = "{{url_for('static', filename='tweets/sample_tweets.txt')}}";
+			//filename = "{{url_for('static', filename='tweets/sample_tweets.txt')}}";
+                 filename = "{{filepath}}" + 'sample_tweets.txt';
 			draw_tweet_table(filename);
 			
 		}

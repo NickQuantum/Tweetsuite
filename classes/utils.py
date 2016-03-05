@@ -10,6 +10,7 @@ import uuid
 
 tweepy_api = 0      # declare global variable to store tweepy api
 filelocation = None   # declare global variable to store file prefix
+jsfilelocation = None # declare global variable to store js file prefix
 
 def InitializeTweepyAPI():
     session_username = 0
@@ -24,6 +25,8 @@ def InitializeTweepyAPI():
         flask.session['uid'] = uid.urn[9:]
         global filelocation
         filelocation = "static//tweets//" + uid.urn[9:] + "_"
+        global jsfilelocation
+        jsfilelocation = "static/tweets/" + uid.urn[9:] + "_"
     
         consumer_key = "6XhZ7RX6saKTPEqHfGMVmLOzU"
         consumer_secret = "iNVdx2FQMInmdlwqMDMQKn6FkwXAN11QbuPhJ27mOlEDIkL5E2"
