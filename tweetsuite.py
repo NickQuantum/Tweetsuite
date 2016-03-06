@@ -32,4 +32,4 @@ tweetsuite.add_url_rule('/result', view_func=Result.as_view('result'))
  
    
 if __name__ == '__main__':
-    tweetsuite.run(debug=True)
+    tweetsuite.run(debug=False)
