@@ -124,7 +124,7 @@ class NetworkGraph():
                     
                     
     def write_networkgraph_json(self):                
-        graphjson_filepath = 'static//tweets//'+'sample_graph.json'
+        graphjson_filepath = utils.filelocation + 'sample_graph.json'
         try:
             data = json_graph.node_link_data(self.g)
             ##pprint.pprint(data) 

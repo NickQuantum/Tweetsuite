@@ -128,7 +128,8 @@
 				$(function() {
 					$("#users_table").find("tr:gt(0)").remove();
 				});
-				filename = "{{url_for('static', filename='tweets/topUserNames.json')}}";
+				//filename = "{{url_for('static', filename='tweets/topUserNames.json')}}";
+                         filename = "{{filepath}}" + 'topUserNames.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -149,7 +150,8 @@
 				$(function() {
 					$("#retweet_table").find("tr:gt(0)").remove();
 				});
-				filename = "{{url_for('static', filename='tweets/topRetweets.json')}}";
+				//filename = "{{url_for('static', filename='tweets/topRetweets.json')}}";
+                        filename = "{{filepath}}" + 'topRetweets.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -171,7 +173,8 @@
 				$(function() {
 					$("#urls_table").find("tr:gt(0)").remove();
 				});
-				filename = "{{url_for('static', filename='tweets/topUrls.json')}}";
+				//filename = "{{url_for('static', filename='tweets/topUrls.json')}}";
+                        filename = "{{filepath}}" + 'topUrls.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -192,7 +195,8 @@
 				$(function() {
 					$("#hashtags_table").find("tr:gt(0)").remove();
 				});
-				filename = "{{url_for('static', filename='tweets/topHashTags.json')}}";
+				//filename = "{{url_for('static', filename='tweets/topHashTags.json')}}";
+                        filename = "{{filepath}}" + 'topHashTags.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -213,7 +217,8 @@
 				$(function() {
 					$("#locations_table").find("tr:gt(0)").remove();
 				});
-				filename = "{{url_for('static', filename='tweets/topLocations.json')}}";
+				//filename = "{{url_for('static', filename='tweets/topLocations.json')}}";
+                        filename = "{{filepath}}" + 'topLocations.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -234,7 +239,8 @@
 				$(function() {
 					$("#mentions_table").find("tr:gt(0)").remove();
 				});
-				filename = "{{url_for('static', filename='tweets/topMentions.json')}}";
+				//filename = "{{url_for('static', filename='tweets/topMentions.json')}}";
+                        filename = "{{filepath}}" + 'topMentions.json';
 				filename = filename + '?'+ new Date().getTime();
 				
 				$.getJSON( filename, function( data ) {
@@ -255,7 +261,8 @@
 				$(function() {
 					$("#languages_table").find("tr:gt(0)").remove();
 				});
-				filename = "{{url_for('static', filename='tweets/topLanguages.json')}}";
+				//filename = "{{url_for('static', filename='tweets/topLanguages.json')}}";
+                        filename = "{{filepath}}" + 'topLanguages.json';
 				filename = filename + '?'+ new Date().getTime();
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
@@ -276,7 +283,8 @@
 				$(function() {
 					$("#words_table").find("tr:gt(0)").remove();
 				});
-				filename = "{{url_for('static', filename='tweets/topWords.json')}}";
+				//filename = "{{url_for('static', filename='tweets/topWords.json')}}";
+                        filename = "{{filepath}}" + 'topWords.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
