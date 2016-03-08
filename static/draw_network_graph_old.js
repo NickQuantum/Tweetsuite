@@ -9,9 +9,9 @@
 		var color = d3.scale.category20();
 
 		var force = d3.layout.force()
-			.charge(function(d) { if (d.weight < 3) return -30 ; else if (d.weight < 7) return -60;  else return -d.weight * d.weight - 30 ; })
+			.charge(function(d) { if (d.weight < 3) return -70 ; else if (d.weight < 7) return -160;  else return -d.weight * d.weight - 150 ; })
 			.linkStrength(1)  //1
-			.linkDistance(function(d) { return 5*d.weight + 50; })
+			.linkDistance(function(d) { return 10*d.weight + 50; })
 			.size([width, height]);
 
 		var link, node;	
@@ -40,12 +40,12 @@
 			//.attr("height", height);
 
 		var rectangle = svg.append("rect")
-                             .attr("x", 0.5*margin.left)
+                             .attr("x", margin.left)
                              .attr("y", -margin.top)
                             .attr("width", 1300 - 2*margin.left - margin.right)
                             .attr("height", 700)
 							.attr("fill", "white")
-							.style("stroke-width",2)
+							.style("stroke-width",1)
 							.style("stroke", "black");
 
 		   link = svg.selectAll(".link")
@@ -63,7 +63,7 @@
 				.data(graph.nodes)
 				.enter().append("circle")
 				.attr("class", "node")
-				.attr("r", function(d) { if ((d.weight > 0) && (d.weight <= 20)) return d.weight*2 + 5 ; else if (d.weight > 20) return 50;  else return 0; })
+				.attr("r", function(d) { if ((d.weight > 0) && (d.weight <= 20)) return d.weight*2 + 5 ; else if (d.weight > 20) return 60;  else return 0; })
 				.style("fill", function(d) { return color(d.weight); })
 				.call(force.drag)
 				.on("mousedown", function(d){
