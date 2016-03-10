@@ -129,7 +129,7 @@
 					$("#users_table").find("tr:gt(0)").remove();
 				});
 				//filename = "{{url_for('static', filename='tweets/topUserNames.json')}}";
-                         filename = "{{filepath}}" + 'topUserNames.json';
+                filename = "{{filepath}}" + 'topUserNames.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -151,7 +151,7 @@
 					$("#retweet_table").find("tr:gt(0)").remove();
 				});
 				//filename = "{{url_for('static', filename='tweets/topRetweets.json')}}";
-                        filename = "{{filepath}}" + 'topRetweets.json';
+                filename = "{{filepath}}" + 'topRetweets.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -174,7 +174,7 @@
 					$("#urls_table").find("tr:gt(0)").remove();
 				});
 				//filename = "{{url_for('static', filename='tweets/topUrls.json')}}";
-                        filename = "{{filepath}}" + 'topUrls.json';
+                filename = "{{filepath}}" + 'topUrls.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -196,7 +196,7 @@
 					$("#hashtags_table").find("tr:gt(0)").remove();
 				});
 				//filename = "{{url_for('static', filename='tweets/topHashTags.json')}}";
-                        filename = "{{filepath}}" + 'topHashTags.json';
+                filename = "{{filepath}}" + 'topHashTags.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -218,7 +218,7 @@
 					$("#locations_table").find("tr:gt(0)").remove();
 				});
 				//filename = "{{url_for('static', filename='tweets/topLocations.json')}}";
-                        filename = "{{filepath}}" + 'topLocations.json';
+                filename = "{{filepath}}" + 'topLocations.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
@@ -240,7 +240,7 @@
 					$("#mentions_table").find("tr:gt(0)").remove();
 				});
 				//filename = "{{url_for('static', filename='tweets/topMentions.json')}}";
-                        filename = "{{filepath}}" + 'topMentions.json';
+                filename = "{{filepath}}" + 'topMentions.json';
 				filename = filename + '?'+ new Date().getTime();
 				
 				$.getJSON( filename, function( data ) {
@@ -262,7 +262,7 @@
 					$("#languages_table").find("tr:gt(0)").remove();
 				});
 				//filename = "{{url_for('static', filename='tweets/topLanguages.json')}}";
-                        filename = "{{filepath}}" + 'topLanguages.json';
+                filename = "{{filepath}}" + 'topLanguages.json';
 				filename = filename + '?'+ new Date().getTime();
 				$.getJSON( filename, function( data ) {
 					var tweets = data;
@@ -284,7 +284,7 @@
 					$("#words_table").find("tr:gt(0)").remove();
 				});
 				//filename = "{{url_for('static', filename='tweets/topWords.json')}}";
-                        filename = "{{filepath}}" + 'topWords.json';
+                filename = "{{filepath}}" + 'topWords.json';
 				filename = filename + '?'+ new Date().getTime();
 				//window.alert(filename);
 				$.getJSON( filename, function( data ) {
