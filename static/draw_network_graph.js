@@ -22,48 +22,48 @@
 			  .links(graph.links)
 			  .start();
 		
-		var div = d3.select("body")
-			.append("div")	//declare the tooltip div
-			.attr("class", "tooltip")	//apply the 'tooltip' class
-			.attr("id", "idtooltip")
-			.style("opacity", 0)
-			.attr("onclick","$(this).fadeTo('fast',0.1);");
-		
-		var svg = d3.select("body").append("svg")
-		.attr("id","snagraph")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
-		.append("g")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			var div = d3.select("body")
+				.append("div")	//declare the tooltip div
+				.attr("class", "tooltip")	//apply the 'tooltip' class
+				.attr("id", "idtooltip")
+				.style("opacity", 0)
+				.attr("onclick","$(this).fadeTo('fast',0.1);");
+			
+			var svg = d3.select("body").append("svg")
+				.attr("id","snagraph")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
 			//.attr("width", width)
 			//.attr("height", height);
 
-		var rectangle = svg.append("rect")
-                             .attr("x", 0.5*margin.left)
-                             .attr("y", -margin.top)
-                            .attr("width", 1300 - 2*margin.left - margin.right)
-                            .attr("height", 700)
-							.attr("fill", "white")
-							.style("stroke-width",2)
-							.style("stroke", "black");
+			var rectangle = svg.append("rect")
+                .attr("x", 0.5*margin.left)
+                .attr("y", -margin.top)
+                .attr("width", 1300 - 2*margin.left - margin.right)
+                .attr("height", 700)
+				.attr("fill", "white")
+				.style("stroke-width",2)
+				.style("stroke", "black");
 
 		   link = svg.selectAll(".link")
-			  .data(graph.links)
-			.enter().append("line")
-			  .attr("class", "link")
-			  .style("stroke-width", function(d) { return Math.sqrt(d.weight); });
+				.data(graph.links)
+				.enter().append("line")
+				.attr("class", "link")
+				.style("stroke-width", function(d) { return Math.sqrt(d.weight); });
 
 			//link.exit().remove();
 		
 			// Define the line
-		//var	tip = if (d.tweet != null) return d.tweet; else return d.screen_name;;
+			//var	tip = if (d.tweet != null) return d.tweet; else return d.screen_name;;
 			  
-		  node = svg.selectAll(".node")
+			node = svg.selectAll(".node")
 				.data(graph.nodes)
 				.enter().append("circle")
 				.attr("class", "node")
-				.attr("r", function(d) { if ((d.weight > 0) && (d.weight <= 20)) return d.weight*2 + 5 ; else if (d.weight > 20) return 50;  else return 0; })
+				.attr("r", function(d) { if ((d.weight > 0) && (d.weight <= 20)) return d.weight*2 + 5 ; else if (d.weight > 20) 		return 50;  else return 0; })
 				.style("fill", function(d) { return color(d.weight); })
 				.call(force.drag)
 				.on("mousedown", function(d){
@@ -88,36 +88,36 @@
 						.style("top", (d3.event.pageY - 25) + "px");
 				});
 
-		  node.append("title")
+			node.append("title")
 			  .text(function(d) { if (d.tweet != null) return d.tweet; else return d.screen_name; });
 
-		  var texts = svg.selectAll("text.label")
-						.data(graph.nodes)
-						.enter().append("text")
-						.attr("class", "label")
-						.attr("fill", "black")
-						.style("font-size", function(d) { if (d.weight < 10 ) return (d.weight*2 + 5)
-                            .toString().concat("px"); else if (d.weight < 20) return "25px" ; else return "40px" })
-						.text(function(d) {  if (d.weight > 1) return d.screen_name;  });
+			var texts = svg.selectAll("text.label")
+				.data(graph.nodes)
+				.enter().append("text")
+				.attr("class", "label")
+				.attr("fill", "black")
+				.style("font-size", function(d) { if (d.weight < 10 ) return (d.weight*2 + 5)
+                    .toString().concat("px"); else if (d.weight < 20) return "25px" ; else return "40px" })
+				.text(function(d) {  if (d.weight > 1) return d.screen_name;  });
 
 
-		  force.on("tick", function() {
-			link.attr("x1", function(d) { return d.source.x; })
-				.attr("y1", function(d) { return d.source.y; })
-				.attr("x2", function(d) { return d.target.x; })
-				.attr("y2", function(d) { return d.target.y; });
+			force.on("tick", function() {
+				link.attr("x1", function(d) { return d.source.x; })
+					.attr("y1", function(d) { return d.source.y; })
+					.attr("x2", function(d) { return d.target.x; })
+					.attr("y2", function(d) { return d.target.y; });
 
-			node.attr("cx", function(d) { return d.x; })
-				.attr("cy", function(d) { return d.y; });
+				node.attr("cx", function(d) { return d.x; })
+					.attr("cy", function(d) { return d.y; });
 
-			texts.attr("transform", function(d) {
-				return "translate(" + d.x + "," + d.y + ")"; });
+				texts.attr("transform", function(d) {
+					return "translate(" + d.x + "," + d.y + ")"; });
 
-		  });
+			});
 
 		});
 
-		};
+	};
 		
 		//drawsnagraph();
 		
