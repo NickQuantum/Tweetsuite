@@ -123,7 +123,6 @@
 	<script>
 	
 		var filename="emptyfilename";
-        var filepath = "{{filepath}}";
 		
 		function show_statistics(){
 			
@@ -145,7 +144,6 @@
 			$("#statistics").addClass('hidden');
 			d3.select("#snagraph").remove();
 			$("#tweets").removeClass('hidden');
-			//filename = "{{url_for('static', filename='tweets/sample_tweets.txt')}}";
             filename = "{{filepath}}" + 'sample_tweets.txt';
 			draw_tweet_table(filename);
 			
@@ -156,7 +154,6 @@
 			$("#statistics").addClass('hidden');
 			$("#tweets").addClass('hidden');
 			$("#network_graph").removeClass('hidden');
-			//filename = "{{url_for('static', filename='tweets/sample_graph.json')}}";
             filename = "{{filepath}}" + 'sample_graph.json';
 			filename = filename + '?'+ new Date().getTime();
 			draw_network_graph(filename);
