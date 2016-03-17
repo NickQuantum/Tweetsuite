@@ -153,19 +153,20 @@ class Search(MethodView):
         topLanguagesJson = topLanguages.to_json(orient = 'index')        
         
         #Write JSON to Files
-        with open('static//tweets//topUserNames.json', 'w') as outfile:
+        print(utils.filelocation)
+        with open(utils.filelocation + 'topUserNames.json', 'w') as outfile:
             json.dump(topUserNamesJson, outfile)
-        with open('static//tweets//topRetweets.json', 'w') as outfile:
+        with open(utils.filelocation + 'topRetweets.json', 'w') as outfile:
             json.dump(topRetweetsJson, outfile)
-        with open('static//tweets//topUrls.json', 'w') as outfile:
+        with open(utils.filelocation + 'topUrls.json', 'w') as outfile:
             json.dump(topUrlJson, outfile) 
-        with open('static//tweets//topHashTags.json', 'w') as outfile:
+        with open(utils.filelocation + 'topHashTags.json', 'w') as outfile:
             json.dump(topHashTagJson, outfile) 
-        with open('static//tweets//topLocations.json', 'w') as outfile:
+        with open(utils.filelocation + 'topLocations.json', 'w') as outfile:
             json.dump(topLocationsJson, outfile) 
-        with open('static//tweets//topMentions.json', 'w') as outfile:
+        with open(utils.filelocation + 'topMentions.json', 'w') as outfile:
             json.dump(topMentionsJson, outfile) 
-        with open('static//tweets//topLanguages.json', 'w') as outfile:
+        with open(utils.filelocation + 'topLanguages.json', 'w') as outfile:
             json.dump(topLanguagesJson, outfile) 
-        with open('static//tweets//topWords.json', 'w') as outfile:
+        with open(utils.filelocation + 'topWords.json', 'w') as outfile:
             json.dump(topWords, outfile) 

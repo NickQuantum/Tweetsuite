@@ -45,4 +45,4 @@ class Result(MethodView):
         
         
         
-        return render_template('show_results.html', tweets = tweets_data)   
+        return render_template('show_results.html', tweets = tweets_data, filepath = utils.jsfilelocation)   
