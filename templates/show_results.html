@@ -119,7 +119,11 @@
 		{% include 'show_tweets.html' %}
 		
 	</div>
-	
+	<div id='influencers' class="col col-lg-12 text-center hidden " style="margin-top:0px ;">
+
+		{% include 'show_influencertable.html' %}
+		
+	</div>
 	<script>
 	
 		var filename="emptyfilename";
@@ -127,6 +131,8 @@
 		function show_statistics(){
 			
 			$("#tweets").addClass('hidden');
+                 $("#influencers").addClass('hidden');
+                
 			$("#statistics").removeClass('hidden');
 			d3.select("#snagraph").remove();
 			draw_users_table();
@@ -142,6 +148,8 @@
 		function show_tweets(){
 			
 			$("#statistics").addClass('hidden');
+                 $("#influencers").addClass('hidden');
+                
 			d3.select("#snagraph").remove();
 			$("#tweets").removeClass('hidden');
 			filename = "{{url_for('static', filename='tweets/sample_tweets.txt')}}";
@@ -153,13 +161,23 @@
 			
 			$("#statistics").addClass('hidden');
 			$("#tweets").addClass('hidden');
+                 $("#influencers").addClass('hidden');
 			$("#network_graph").removeClass('hidden');
 			filename = "{{url_for('static', filename='tweets/sample_graph.json')}}";
 			filename = filename + '?'+ new Date().getTime();
 			draw_network_graph(filename);
 			
 		}
-		
+		function showInfluencersAndTweets(){
+			
+                	$("#statistics").addClass('hidden');
+                 $("#tweets").addClass('hidden');
+                
+			d3.select("#snagraph").remove();
+			$("#influencers").removeClass('hidden');
+
+			
+		}
 		show_statistics();
 	</script>
 {% endblock %}

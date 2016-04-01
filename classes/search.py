@@ -19,6 +19,7 @@ from flask import Flask, request, redirect, url_for
 from flask import render_template
 from flask.views import MethodView
 from classes.networkgraph import NetworkGraph
+from classes.topinfluencers import TopInfluencers
 
 
 class Search(MethodView):
@@ -42,6 +43,8 @@ class Search(MethodView):
         
         #End Statistics Code
         
+ 
+        
         #Write tweets to file        
         filepath = utils.filelocation + 'tweets_raw.json' 
         target = open(filepath, 'w')
@@ -57,7 +60,14 @@ class Search(MethodView):
         networkGraph.build_network_graph()
         networkGraph.write_networkgraph_json()
         
+        # Load the top mentions in the top influencers page
+        topinfluencers = TopInfluencers()
         
+        topinfluencers.build_influencer_iframe()
+       
+        topinfluencers.write_influencer_dict()
+        topinfluencers.build_influencer_iframe2()
+        topinfluencers.write_influencer_dict2()
         return redirect(url_for('result'))
         
    

@@ -30,7 +30,7 @@ class NetworkGraph():
         self.mention_tweet_dict = {} #Dict of all mention tweet texts with User Id as key
         self.mention_user_dict = {} #Dict of all Mention User Ids with User Id as key
         self.username_dict = {} #Dict of all User Names with User Id as key
-        
+        self.retweet_userid_dict = {}
         #Initialize all Lists
         self.user_list = [] #List of all User Ids
         self.retweet_user_list = [] #List of all Retweet User Ids
@@ -47,6 +47,8 @@ class NetworkGraph():
                 self.tweet_dict[user_id] = tweet['text']
                 self.user_list.append(user_id)
                 self.tweet_id_dict[user_id] =tweet_id
+                
+                self.retweet_userid_dict[user_id] = tweet['retweet_count']
         
                 if 'retweeted_status' in tweet: 
                     #pprint.pprint(tweet)
