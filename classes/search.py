@@ -15,7 +15,7 @@ import re
 
 
 
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, session
 from flask import render_template
 from flask.views import MethodView
 from classes.networkgraph import NetworkGraph
@@ -23,20 +23,21 @@ from classes.networkgraph import NetworkGraph
 
 class Search(MethodView):
     def get(self):
-        return render_template('index.html')
-        
- 
-    
+        return redirect(url_for('index'))
+
     
     def post(self):
         query = request.form['Query']
+        try:
+            session['query'] = query
+        except:
+            print "loading query to session failed"
         tweepy_api = utils.tweepy_api
         
         max_tweets = 500
         
         #Extract tweets using Tweepy Cursor and Write to File   
         searched_tweets = [status for status in tweepy.Cursor(tweepy_api.search, q=query).items(max_tweets)]
-        
         #Start Statistics Code (TBD: Move to separate Statistics Class)
         self.createStatistics(searched_tweets);
         

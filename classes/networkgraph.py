@@ -18,7 +18,7 @@ class NetworkGraph():
         self.filepath = utils.filelocation + 'tweets_raw.json' 
         self.tweets_file = open(self.filepath, "r")
         self.tweepy_api = utils.tweepy_api ##utils.InitializeTweepyAPI()    
-        
+        print "successfully retrieved utils.tweepy_api"
         #Initialize all the Dictionaries and Lists that are needed for the Network 
         #Graph.
         #Initialize all Dictionaries

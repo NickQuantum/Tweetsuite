@@ -7,8 +7,8 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="{{url_for('search')}}">Tweet Suite</a>
+        <a class="navbar-brand" href="{{url_for('logout')}}">{% if 'username' in session %}  Logout &nbsp;{{ session['username'] }} {% endif %} </a>
     </div>
-	
 	<div class="collapse navbar-collapse" id="navbar">
         <div class="col-sm-3 col-md-3 nav pull-right">
 		
@@ -22,8 +22,7 @@
 		       		
 		</div>	
     </div>
-	
-	
+
 	
 	<script>
 		function displayMessage(){
@@ -37,6 +36,8 @@
 	</script>
 	
 </nav>
+
+
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
