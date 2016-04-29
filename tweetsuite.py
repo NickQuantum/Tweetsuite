@@ -23,7 +23,8 @@ application.secret_key = "social"                 # needed for sessions
 
 consumer_key = "mpIuWJYkQKUvaiS4FPwQpGVr8"
 consumer_secret = "EWOz9A9om3tf85XsF89KbIVC5LUkHEZNhdy2PcHTfOr9tP4jjE"
-callback_url = 'http://localhost:5000/verify'
+#callback_url = 'http://localhost:5000/verify'
+callback_url = 'http://tweetsuite-dev.us-east-1.elasticbeanstalk.com/verify'
 
 class Mainline(MethodView):
     def get(self):
