@@ -53,6 +53,11 @@ class Login(MethodView):
 
 class Verify(MethodView):
     def get(self):
+        try:
+            request.args['denied']              # When twitter authorization fails
+            return redirect(url_for('login'))
+        except:
+            pass
         #get the verifier key from the request url
         verifier= request.args['oauth_verifier']
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
