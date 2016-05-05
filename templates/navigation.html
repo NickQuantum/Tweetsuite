@@ -12,12 +12,12 @@
 	<div class="collapse navbar-collapse" id="navbar">
         <div class="col-sm-3 col-md-3 nav pull-right">
 		
-			<form action="{{url_for('search')}}" role="search" method="post" class= "navbar-form form-inline" style="padding-top:0px;" onsubmit="displayMessage()">
+			<form id="SearchForm" action="{{url_for('search')}}" role="search" method="post" class= "navbar-form form-inline" style="padding-top:0px;" onsubmit="displayMessage()">
 				<div class="input-group form-group">
 					<input type="text" class="form-control" id="Query" name="Query" placeholder= 
 					{% if 'query' in session %} "{{ session['query'] }}" {% else %} "Keyword search" {% endif %} required>
 				</div>
-				<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+				<button type="submit" id="SearchQuery" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
 			</form>	
 		       		
 		</div>	

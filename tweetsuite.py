@@ -23,8 +23,8 @@ application.secret_key = "social"                 # needed for sessions
 
 consumer_key = "mpIuWJYkQKUvaiS4FPwQpGVr8"
 consumer_secret = "EWOz9A9om3tf85XsF89KbIVC5LUkHEZNhdy2PcHTfOr9tP4jjE"
-#callback_url = 'http://localhost:5000/verify'
-callback_url = 'http://tweetsuite-dev.us-east-1.elasticbeanstalk.com/verify'
+callback_url = 'http://localhost:5000/verify'
+#callback_url = 'http://tweetsuite-dev.us-east-1.elasticbeanstalk.com/verify'
 
 class Mainline(MethodView):
     def get(self):
@@ -48,7 +48,7 @@ class Login(MethodView):
             print 'Error! Failed to get request token'
         #this is twitter's url for authentication
         htmlstring= "<div style='width:200px;margin-top:200px;margin-left:auto;margin-right:auto'>"
-        htmlstring = htmlstring + "<a href='"+redirect_url+ "'><img src='https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png' alt='Sign in with Twitter' title='Sign in with Twitter'></a>"
+        htmlstring = htmlstring + "<a id='redirecturl' href='"+redirect_url+ "'><img src='https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png' alt='Sign in with Twitter' title='Sign in with Twitter'></a>"
         return htmlstring
 
 class Verify(MethodView):
